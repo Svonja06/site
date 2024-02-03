@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f8f8f8; /* Set background color */
+        padding: 0;
+        margin: 0;
+        overflow: hidden; /* Prevents scrollbars due to randomly positioned background images */
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        position: relative; /* Needed for absolute positioning */
+    }
+    .button {
+        position: relative;
+        z-index: 2; /* Set z-index to be above background images */
+        padding: 50px 100px; /* Adjust padding to make buttons bigger */
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 10px;
+    }
+    .green {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+    }
+    .red {
+        background-color: #f44336;
+        color: white;
+        border: none;
+    }
+    .button-container {
+        position: relative;
+        z-index: 2; /* Set z-index to be above background images */
+        display: flex;
+        justify-content: space-between;
+        max-width: 400px; /* Adjust the max-width to center the buttons correctly */
+        width: 100%;
+    }
+    h1 {
+        position: relative;
+        z-index: 2; /* Set z-index to be above background images */
+        margin: 0; /* Reset margin */
+        margin-bottom: 50px; /* Add margin-bottom to create space between text and buttons */
+        text-align: center; /* Center the text */
+        font-size: 48px; /* Increase font size */
+        font-family: "Times New Roman", Times, serif; /* Change font family */
+        background: linear-gradient(45deg, #ff4d4d, #ff8080); /* Gradient background */
+        -webkit-background-clip: text; /* Clip text to background */
+        -webkit-text-fill-color: transparent; /* Hide text */
+        padding: 20px; /* Add padding for better readability */
+        border-radius: 10px; /* Add border radius for a softer look */
+        animation: pulsate 1s infinite alternate; /* Animation */
+    }
+
+    @keyframes pulsate {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.1);
+        }
+    }
+
+    .valentine-img {
+        width: 50%; /* Make the image 50% smaller */
+        height: auto;
+        position: relative;
+        z-index: 3; /* Set z-index to be above other elements */
+        border: 10px solid #ff4d4d; /* Add border with desired color */
+        border-radius: 20px; /* Add border radius for a rounded frame */
+    }
+
+    .background-img {
+        position: absolute;
+        width: 100px; /* Adjust the size of the background image */
+        height: auto;
+        z-index: 1; /* Set z-index to be behind other elements */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <img src="monaija.png" alt="Valentine" class="valentine-img">
+    <h1>Will You Be My Valentine?</h1>
+    <div class="button-container">
+        <button class="button green" onclick="location.href='yay.html'">Yes</button>
+        <button class="button red" onclick="changeNoText()">No</button>
+    </div>
+    <p id="response"></p>
+</div>
+
+<script>
+    function changeNoText() {
+        var noButton = document.querySelector('.button.red');
+        var responses = ["Really?", "Are you sure?", "But why?", "Why not?", "Do you not love me?", "Why are you doing this?", "Please accept", "I'm gonna cry", "I will kill myself"];
+        var randomIndex = Math.floor(Math.random() * responses.length);
+        noButton.innerText = responses[randomIndex];
+    }
+
+    // Function to create and position background images
+    window.onload = function() {
+        var container = document.querySelector('.container');
+        var numImages = 100; // Number of background images
+        var imgSrc = 'R.png'; // Placeholder image URL
+
+        for (var i = 0; i < numImages; i++) {
+            var img = document.createElement('img');
+            img.setAttribute('src', imgSrc);
+            img.classList.add('background-img');
+            img.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            img.style.top = Math.random() * 100 + 'vh'; // Random vertical position
+            container.appendChild(img);
+        }
+    };
+</script>
+</body>
+</html>
